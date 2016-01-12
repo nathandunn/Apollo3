@@ -17,7 +17,7 @@ plugins {
     id "io.spring.dependency-management" version "0.5.4.RELEASE"
 }
 
-version "0.1"
+version "3.0"
 group "apollo3"
 
 apply plugin: "spring-boot"
@@ -27,6 +27,8 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.grails-gsp"
+apply plugin: 'war'
+apply plugin: 'gwt'
 
 ext {
     grailsVersion = project.grailsVersion
@@ -40,10 +42,12 @@ assets {
 
 repositories {
     mavenLocal()
+    jcenter()
     maven {
         url "https://repo.grails.org/grails/core"
     }
-    maven{
+    maven {
+//        url 'http://dl.bintray.com/steffenschaefer/maven'
         url 'http://dl.bintray.com/steffenschaefer/maven'
     }
     mavenCentral()
@@ -84,11 +88,24 @@ dependencies {
 
     // GWT
 //    https://steffenschaefer.github.io/gwt-gradle-plugin/doc/0.1/
-    classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.1'
+//    compile 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.1'
+//    dependencies {
+    classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+//    }
 
     // Security added
     compile 'org.grails.plugins:spring-security-shiro:3.0.0'
 
+}
+
+gwt {
+    gwtVersion = '2.7.1'
+    modules 'Annotator'
+    compiler {
+        enableClosureCompiler = true; // activates -XenableClosureCompiler
+        disableClassMetadata = true; // activates -XdisableClassMetadata
+        disableCastChecking = true; // activates -XdisableCastChecking
+    }
 }
 
 task wrapper(type: Wrapper) {
