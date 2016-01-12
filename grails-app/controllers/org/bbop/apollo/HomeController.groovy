@@ -4,7 +4,7 @@ import grails.plugins.rest.client.RestBuilder
 import grails.plugins.rest.client.RestResponse
 import org.bbop.apollo.gwt.shared.PermissionEnum
 import org.bbop.apollo.report.PerformanceMetric
-import org.codehaus.groovy.grails.web.json.JSONObject
+import org.grails.web.json.JSONObject
 import org.grails.plugins.metrics.groovy.Timed
 
 class HomeController {

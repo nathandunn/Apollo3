@@ -2,8 +2,8 @@ package org.bbop.apollo
 
 import org.bbop.apollo.sequence.DownloadFile
 import grails.converters.JSON
-import org.codehaus.groovy.grails.web.json.JSONArray
-import org.codehaus.groovy.grails.web.json.JSONObject
+import org.grails.web.json.JSONArray
+import org.grails.web.json.JSONObject
 import org.grails.plugins.metrics.groovy.Timed
 import org.restapidoc.annotation.RestApi
 import org.restapidoc.annotation.RestApiMethod

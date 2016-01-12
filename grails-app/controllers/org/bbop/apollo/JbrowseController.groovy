@@ -10,8 +10,8 @@ import org.bbop.apollo.projection.MultiSequenceProjection
 import org.bbop.apollo.projection.ProjectionChunk
 import org.bbop.apollo.projection.ProjectionSequence
 import org.bbop.apollo.sequence.Range
-import org.codehaus.groovy.grails.web.json.JSONObject
-import org.codehaus.groovy.grails.web.json.JSONArray
+import org.grails.web.json.JSONObject
+import org.grails.web.json.JSONArray
 
 import javax.servlet.http.HttpServletResponse
 import java.text.DateFormat

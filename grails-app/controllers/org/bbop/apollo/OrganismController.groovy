@@ -3,8 +3,8 @@ package org.bbop.apollo
 import org.bbop.apollo.gwt.shared.PermissionEnum
 import grails.converters.JSON
 import org.bbop.apollo.report.OrganismSummary
-import org.codehaus.groovy.grails.web.json.JSONArray
-import org.codehaus.groovy.grails.web.json.JSONObject
+import org.grails.web.json.JSONArray
+import org.grails.web.json.JSONObject
 import org.restapidoc.annotation.RestApi
 import org.restapidoc.annotation.RestApiBodyObject
 import org.restapidoc.annotation.RestApiMethod
