@@ -35,7 +35,7 @@ import org.springframework.messaging.handler.annotation.SendTo
  *
  * This code primarily provides integration with genomic editing functionality visible in the JBrowse window.
  */
-@RestApi(name = "Annotation Services", description = "Methods for running the annotation engine")
+//@RestApi(name = "Annotation Services", description = "Methods for running the annotation engine")
 class AnnotationEditorController extends AbstractApolloController implements AnnotationListener {
 
 
@@ -70,7 +70,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
     /**
      * @return
      */
-    @Timed
+    //@Timed
     def getUserPermission() {
         log.debug "getUserPermission ${params.data}"
         JSONObject returnObject = (JSONObject) JSON.parse(params.data)
@@ -119,7 +119,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
         render jre as JSON
     }
 
-    @Timed
+    //@Timed
     def getHistoryForFeatures() {
         log.debug "getHistoryForFeatures ${params}"
         JSONObject inputObject = (JSONObject) JSON.parse(params.data)
@@ -468,7 +468,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
         }
     }
 
-    @Timed
+    //@Timed
     def getInformation() {
         JSONObject featureContainer = createJSONFeatureContainer();
         JSONObject inputObject = (JSONObject) JSON.parse(params.data)
@@ -553,7 +553,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
             ,@RestApiParam(name="sequence", type="string", paramType = RestApiParamType.QUERY,description = "(optional) Sequence name")
             ,@RestApiParam(name="organism", type="string", paramType = RestApiParamType.QUERY,description = "(optional) Organism ID or common name")
     ] )
-    @Timed
+    //@Timed
     def getSequenceAlterations() {
         JSONObject returnObject = (request.JSON ?: JSON.parse(params.data)) as JSONObject
 
@@ -958,7 +958,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
         }
     }
 
-    @Timed
+    //@Timed
     def getAnnotationInfoEditorData() {
         JSONObject inputObject = (JSONObject) JSON.parse(params.data)
         try {
@@ -1041,7 +1041,7 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
 
     @MessageMapping("/AnnotationNotification")
     @SendTo("/topic/AnnotationNotification")
-    @Timed
+    //@Timed
     protected String annotationEditor(String inputString, Principal principal) {
         println  "Input String: annotation editor service ${inputString}"
         inputString = fixTrackString(inputString)

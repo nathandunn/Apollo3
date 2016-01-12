@@ -40,7 +40,13 @@ assets {
 
 repositories {
     mavenLocal()
-    maven { url "https://repo.grails.org/grails/core" }
+    maven {
+        url "https://repo.grails.org/grails/core"
+    }
+    maven{
+        url 'http://dl.bintray.com/steffenschaefer/maven'
+    }
+    mavenCentral()
 }
 
 dependencyManagement {
@@ -72,6 +78,15 @@ dependencies {
     testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
 
     console "org.grails:grails-console"
+
+    // websocket added
+    compile "org.grails.plugins:grails-spring-websocket:2.2.0"
+
+    // GWT
+    classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.1'
+
+    // Security added
+    compile 'org.grails.plugins:spring-security-shiro:3.0.0'
 }
 
 task wrapper(type: Wrapper) {
