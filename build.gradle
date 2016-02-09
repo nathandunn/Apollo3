@@ -3,13 +3,16 @@ buildscript {
         grailsVersion = project.grailsVersion
     }
     repositories {
+        mavenCentral()
         mavenLocal()
+        jcenter()
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
         classpath "org.grails.plugins:hibernate:4.3.10.5"
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
     }
 }
 
@@ -28,6 +31,7 @@ apply plugin: 'idea'
 apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.grails-gsp"
 apply plugin: 'war'
+apply plugin: "java"
 apply plugin: 'gwt'
 
 ext {
@@ -42,15 +46,15 @@ assets {
 
 repositories {
     mavenLocal()
+    mavenCentral()
     jcenter()
     maven {
         url "https://repo.grails.org/grails/core"
     }
-    maven {
+//    maven {
+////        url 'http://dl.bintray.com/steffenschaefer/maven'
 //        url 'http://dl.bintray.com/steffenschaefer/maven'
-        url 'http://dl.bintray.com/steffenschaefer/maven'
-    }
-    mavenCentral()
+//    }
 }
 
 dependencyManagement {
@@ -90,22 +94,42 @@ dependencies {
 //    https://steffenschaefer.github.io/gwt-gradle-plugin/doc/0.1/
 //    compile 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.1'
 //    dependencies {
-    classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+//    classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    compile 'org.gwtbootstrap3:gwtbootstrap3:0.4'
+    compile(group: 'de.richsource.gradle.plugins', name: 'gwt-gradle-plugin', version: '0.6', ext: 'pom')
+
+
+//    cimpile 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
 //    }
 
     // Security added
     compile 'org.grails.plugins:spring-security-shiro:3.0.0'
+    compile 'com.google.gwt:gwt-user:2.7.0'
+    compile 'javax.validation:validation-api:1.1.0.Final'
 
 }
 
 gwt {
-    gwtVersion = '2.7.1'
-    modules 'Annotator'
+    gwtVersion = '2.7.0'
+    modules 'org.bbop.apollo.Annotator'
     compiler {
+        strict = true ;
         enableClosureCompiler = true; // activates -XenableClosureCompiler
         disableClassMetadata = true; // activates -XdisableClassMetadata
         disableCastChecking = true; // activates -XdisableCastChecking
     }
+    dependencies{
+//        gwt 'org.gwtbootstrap3:gwtbootstrap3:0.9.2'
+//        gwt 'com.google.gwt:gwt-codeserver:2.7.0'
+        gwt group: 'com.google.gwt', name: 'gwt-codeserver', version: '2.7.0'
+        gwt group: 'org.gwtbootstrap3', name: 'gwtbootstrap3', version:'0.9.2'
+        gwt group: 'org.gwtbootstrap3', name: 'gwtbootstrap3-extras', version:'0.9.2'
+        gwt group: 'com.allen-sauer.gwt.dnd', name: 'gwt-dnd', version:'3.3.4'
+//        gwt 'com.google.gwt:gwt-user:2.7.0'
+//        gwt 'javax.validation:validation-api:1.1.0.Final'
+//        gwt 'com.allen-sauer.gwt.dnd:gwt-dnd:3.3.4'
+    }
+//    gwt 'org.gwtbootstrap3:gwtbootstrap3:0.4'
 }
 
 task wrapper(type: Wrapper) {
